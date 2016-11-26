@@ -1,0 +1,13 @@
+#!/bin/sh
+
+args=$@
+
+keys=${HOME}/.ssh
+if [ "$1" = --keys ]; then
+   keys=$2
+   shift 1
+fi
+
+echo
+docker run --rm -v ${keys}:/root/.ssh -v ${PWD}:/usr/src/app vidarh/sprinkle $@
+echo
